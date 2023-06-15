@@ -13,13 +13,29 @@
         padding: 8px;
       }
     </style>
+
+    <script>
+      function reverse() {
+        alert(event.target.id);
+        document.getElementById("1").src = "fleur.jpeg";
+      }
+    </script>
   </head>
   <body>
     <h2>GAME</h2>
 
     <table>
       <tr>
-        <td><img src="images.jpeg" alt="back" width="100" height="100" /></td>
+        <td>
+          <img
+            id="1"
+            src="images.jpeg"
+            alt="back"
+            width="100"
+            height="100"
+            onclick="reverse()"
+          />
+        </td>
         <td><img src="images.jpeg" alt="back" width="100" height="100" /></td>
         <td><img src="images.jpeg" alt="back" width="100" height="100" /></td>
       </tr>
