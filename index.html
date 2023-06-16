@@ -15,15 +15,58 @@
     </style>
 
     <script>
-      function reverse() {
-        alert(event.target.id);
-        document.getElementById("1").src = "fleur.jpeg";
+      function aléatoire(array) {
+        for (let i = 0; i < array.length - 1; i++) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+      }
+
+      function reverse(event) {
+        var id = event.target.id;
+        var image = document.getElementById(id);
+
+        var cardImages = ["fleur.jpeg", "girll.jpg", "img.jpg"];
+
+        cardImages = aléatoire(cardImages);
+
+        if (id == "1" || id == "2") {
+          image.src = cardImages[0];
+        } else if (id == "3" || id == "4") {
+          image.src = cardImages[1];
+        } else if (id == "5" || id == "6") {
+          image.src = cardImages[2];
+        }
+        updateScore();
+        updatePlayerTurn();
+      }
+
+      function updateScore() {
+        if (currentPlayer == 1) {
+          player1Score++;
+        } else {
+          player2Score++;
+        }
+
+        document.getElementById("player1Score").textContent =
+          "Score Joueur 1: " + player1Score;
+        document.getElementById("player2Score").textContent =
+          "Score Joueur 2: " + player2Score;
+      }
+
+      function updatePlayerTurn() {
+        currentPlayer = currentPlayer === 1 ? 2 : 1;
+        document.getElementById("playerTurn").textContent =
+          "Tour du Joueur: " + currentPlayer;
       }
     </script>
   </head>
   <body>
-    <h2>GAME</h2>
-
+    <h1>GAME</h1>
+    <p id="playerTurn">Tour du Joueur: 1</p>
+    <p id="player1Score">Score Joueur 1: 0</p>
+    <p id="player2Score">Score Joueur 2: 0</p>
     <table>
       <tr>
         <td>
@@ -33,16 +76,61 @@
             alt="back"
             width="100"
             height="100"
-            onclick="reverse()"
+            onclick="reverse(event)"
           />
         </td>
-        <td><img src="images.jpeg" alt="back" width="100" height="100" /></td>
-        <td><img src="images.jpeg" alt="back" width="100" height="100" /></td>
+        <td>
+          <img
+            id="2"
+            src="images.jpeg"
+            alt="back"
+            width="100"
+            height="100"
+            onclick="reverse(event)"
+          />
+        </td>
+        <td>
+          <img
+            id="3"
+            src="images.jpeg"
+            alt="back"
+            width="100"
+            height="100"
+            onclick="reverse(event)"
+          />
+        </td>
       </tr>
       <tr>
-        <td><img src="images.jpeg" alt="back" width="100" height="100" /></td>
-        <td><img src="images.jpeg" alt="back" width="100" height="100" /></td>
-        <td><img src="images.jpeg" alt="back" width="100" height="100" /></td>
+        <td>
+          <img
+            id="4"
+            src="images.jpeg"
+            alt="back"
+            width="100"
+            height="100"
+            onclick="reverse(event)"
+          />
+        </td>
+        <td>
+          <img
+            id="5"
+            src="images.jpeg"
+            alt="back"
+            width="100"
+            height="100"
+            onclick="reverse(event)"
+          />
+        </td>
+        <td>
+          <img
+            id="6"
+            src="images.jpeg"
+            alt="back"
+            width="100"
+            height="100"
+            onclick="reverse(event)"
+          />
+        </td>
       </tr>
     </table>
   </body>
