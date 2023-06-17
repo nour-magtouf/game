@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GAME</title>
+    <style>
+      table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+      }
+
+      td {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+      }
+    </style>
+
+    <script>
+      let initialT = ["fleur.jpeg", "girl.jpg", "img.jpg"];
+      let T = [];
+      let nummove = 0;
+      let choosencard = 0;
+      let currentcard = 0;
+      let round = "player1";
+      let s1 = 0,
+        s2 = 0;
+      let count = [0, 0, 0];
+      function fillT() {
+        let choice;
+        for (let i = 0; i < 6; i++) {
+          do {
+            choice = Math.floor(Math.random() * 3);
+          } while (count[choice] >= 2);
+          count[choice]++;
+          T[i] = initialT[choice];
+        }
+      }
+      function reverse() {
+        document.getElementById(event.target.id).src = T[event.target.id];
+        nummove++;
+        if (nummove == 1) choosencard = event.target.id;
+        else {
+          if (T[event.target.id] != T[choosencard]) {
+            currentcard = event.target.id;
+            setTimeout(goback, 3000);
+          } else {
+            if (round == "player1") {
+              s1++;
+              document.getElementById("s1").innerHTML = "s1:" + s1;
+            } else {
+              s2++;
+              document.getElementById("s2").innerHTML = "s2:" + s2;
+            }
+          }
+
+          nummove = 0;
+        }
+      }
+      function goback() {
+        document.getElementById(currentcard).src = "images.jpeg";
+        document.getElementById(choosencard).src = "images.jpeg";
+        if (round == "player1") round = "player2";
+        else round = "player1";
+        document.getElementById("p").innerHTML = "round :" + round;
+      }
+      fillT();
+      console.log("T=", T);
+    </script>
+  </head>
+  <body>
+    <h2>GAME</h2>
+    <p id="p">round : p1</p>
+    <p id="s1">s1 : 0</p>
+    <p id="s2">s2 : 0</p>
+    <table>
+      <tr>
+        <td>
+          <img
+            id="0"
+            src="images.jpeg"
+            alt="back"
+            width="100"
+            height="100"
+            onclick="reverse()"
+          />
+        </td>
+        <td>
+          <img
+            id="1"
+            src="images.jpeg"
+            alt="back"
+            width="100"
+            height="100"
+            onclick="reverse()"
+          />
+        </td>
+        <td>
+          <img
+            id="2"
+            src="images.jpeg"
+            alt="back"
+            width="100"
+            height="100"
+            onclick="reverse()"
+          />
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <img
+            id="3"
+            src="images.jpeg"
+            alt="back"
+            width="100"
+            height="100"
+            onclick="reverse()"
+          />
+        </td>
+        <td>
+          <img
+            id="4"
+            src="images.jpeg"
+            alt="back"
+            width="100"
+            height="100"
+            onclick="reverse()"
+          />
+        </td>
+        <td>
+          <img
+            id="5"
+            src="images.jpeg"
+            alt="back"
+            width="100"
+            height="100"
+            onclick="reverse()"
+          />
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
